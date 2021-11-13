@@ -999,7 +999,7 @@ async def get_area_info():
 
 async def get_live_followers_info(need_recommand: int = 0, credential: Credential=None):
     """
-    获取关注列表中正在直播的直播间信息
+    获取关注列表中正在直播的直播间信息，包括房间直播热度，房间名称及标题，清晰度，是否官方认证等信息。
 
     Args:
         need_recommand (int, optional) : 是否接受推荐直播间，Defaults to 0
@@ -1011,26 +1011,14 @@ async def get_live_followers_info(need_recommand: int = 0, credential: Credentia
 
     api = API["info"]["followers_live_info"]
     params = {
-        "access_key": credential.sessdata,
-        "actionKey": "appKey",
-        "appkey": 0,
-        "build": 6480300,
-        "c_locale": "zh_CN",
-        "channel": "bili",
-        "filterRule": 0,
-        "mobi_app": "android",
         "need_recommend": need_recommand,
-        "platform": "android",
-        "s_locale": "zh_CN",
-        "statistics": r"%7B%22appId%22%3A1%2C%22platform%22%3A3%2C%22version%22%3A%226.48.0%22%2C%22abtest%22%3A%22%22%7D", # {"appId":1,"platform":3,"version":"6.48.0","abtest":""}
-        "ts": int(time.time()),
-        "sign": 0
+        "filterRule": 0
     }
-    return await request(api['method'], api["url"], params, credential=None, no_csrf=True)
+    return await request(api['method'], api["url"], params=params, credential=credential)
 
 async def get_unlive_followers_info(page:int, page_size:int=30, credential: Credential=None):
     """
-    获取关注列表中未在直播的直播间信息，包括上次开播时间等
+    获取关注列表中未在直播的直播间信息，包括上次开播时间，上次开播的类别，直播间公告，是否有录播等。
 
     Args:
         page (int, optional) : 页码
@@ -1043,20 +1031,7 @@ async def get_unlive_followers_info(page:int, page_size:int=30, credential: Cred
 
     api = API["info"]["followers_unlive_info"]
     params = {
-        "access_key": credential.sessdata,
-        "actionKey": "appKey",
-        "appkey": 0,
-        "build": 6480300,
-        "c_locale": "zh_CN",
-        "channel": "bili",
-        "device": "android",
-        "mobi_app": "android",
         "page": page,
         "pagesize": page_size,
-        "platform": "android",
-        "s_locale": "zh_CN",
-        "statistics": r"%7B%22appId%22%3A1%2C%22platform%22%3A3%2C%22version%22%3A%226.48.0%22%2C%22abtest%22%3A%22%22%7D", # {"appId":1,"platform":3,"version":"6.48.0","abtest":""}
-        "ts": int(time.time()),
-        "sign": 0
     }
-    return await request(api['method'], api["url"], params, credential=None, no_csrf=True)
+    return await request(api['method'], api["url"], params=params, credential=credential)
