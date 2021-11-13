@@ -196,6 +196,51 @@
         "area_parent_id": "int: 父分区 ID 可以不用填, 获取分区id可使用 get_area_info 方法"
       },
       "comment":"获取所有礼物信息，三个字段可以不用填，但填了有助于减小返回内容的大小，置空返回约 2.7w 行，填了三个对应值返回约 1.4w 行"
+    },
+    "followers_live_info":{
+      "url": "https://api.live.bilibili.com/xlive/app-interface/v1/relation/liveAnchor",
+      "method": "GET",
+      "verify": false,
+      "params": {
+        "access_key": "str: cookie中的SESSDATA",
+        "actionKey": "const str: appKey",
+        "appkey": "str: 0 随机字符串，可能和app版本有关",
+        "build": "int: 6480300 app版本号",
+        "c_locale": "const str: zh_CN",
+        "channel": "const str: bili",
+        "filterRule": "int 0 未知",
+        "mobi_app": "const str: android",
+        "need_recommend": "int: 是否接受推荐直播间，0为不接受，1为接受",
+        "platform": "const str: android",
+        "s_locale": "zh_CN",
+        "statistics": "%7B%22appId%22%3A1%2C%22platform%22%3A3%2C%22version%22%3A%226.48.0%22%2C%22abtest%22%3A%22%22%7D 转义前为{\"appId\":1,\"platform\":3,\"version\":\"6.48.0\",\"abtest\":\"\"}", 
+        "ts": "int 当前时间戳",
+        "sign": "str: 0 未知"
+      },
+      "comment": "获取关注列表中已开播主播直播间信息，来自安卓端"
+    },
+    "followers_unlive_info":{
+      "url": "https://api.live.bilibili.com/xlive/app-interface/v1/relation/unliveAnchor",
+      "method": "GET",
+      "verify": false,
+      "params": {
+        "access_key": "str: cookie中的SESSDATA",
+        "actionKey": "const str: appKey",
+        "appkey": "str: 0 随机字符串，可能和app版本有关",
+        "build": "int: 6480300 app版本号",
+        "c_locale": "const str: zh_CN",
+        "channel": "const str: bili",
+        "device": "const str: android",
+        "mobi_app": "const str: android",
+        "page": "int: 页码",
+        "pagesize": "每页数量， 过多可能报错 默认：30",
+        "platform": "const str: android",
+        "s_locale": "zh_CN",
+        "statistics": "%7B%22appId%22%3A1%2C%22platform%22%3A3%2C%22version%22%3A%226.48.0%22%2C%22abtest%22%3A%22%22%7D 转义前为{\"appId\":1,\"platform\":3,\"version\":\"6.48.0\",\"abtest\":\"\"}", 
+        "ts": "int 当前时间戳",
+        "sign": "str: 0 未知"
+      },
+      "comment": "获取关注列表中未开播主播直播间信息，比如上次直播时间，来自安卓端"
     }
   },
   "operate": {
